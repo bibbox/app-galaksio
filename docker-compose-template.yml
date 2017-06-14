@@ -1,0 +1,31 @@
+version: '2'
+
+networks:
+    bibbox-default-network:
+      external: true
+
+services:
+
+  §§INSTANCE-galaksio:
+    image: bibbox/galaksio
+    container_name:  §§INSTANCE-galaksio
+    restart: unless-stopped
+    networks:
+      - bibbox-default-network
+    ports:
+      - "§§PORT:80"
+    environment:
+      - GALAXY_SERVER=§§GALAXY_SERVER
+      - GALAXY_SERVER_URL=§§GALAXY_SERVER_URL
+      - MAX_CONTENT_LENGTH=§§MAX_CONTENT_LENGTH
+      - ADMIN_ACCOUNTS=§§ADMIN_ACCOUNTS
+    depends_on:
+      - §§INSTANCE-galaksio-data
+    volumes_from:
+      - §§INSTANCE-galaksio-data
+
+  §§INSTANCE-galaksio-data:
+    image: busybox
+    container_name: §§INSTANCE-galaksio-data
+    volumes:
+      - ./var/www/galaksio:/usr/local/apache2/htdocs/server/conf/
