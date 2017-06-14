@@ -13,12 +13,7 @@ services:
     networks:
       - bibbox-default-network
     ports:
-      - "§§PORT:80"
-    environment:
-      - GALAXY_SERVER=§§GALAXY_SERVER
-      - GALAXY_SERVER_URL=§§GALAXY_SERVER_URL
-      - MAX_CONTENT_LENGTH=§§MAX_CONTENT_LENGTH
-      - ADMIN_ACCOUNTS=§§ADMIN_ACCOUNTS
+      - §§PORT:80
     depends_on:
       - §§INSTANCE-galaksio-data
     volumes_from:
