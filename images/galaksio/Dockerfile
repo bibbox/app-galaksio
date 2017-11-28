@@ -14,7 +14,7 @@ MAINTAINER Rafael Hernandez <https://github.com/fikipollo>
 RUN apt-get update  \
     && apt-get install -y wget libapache2-mod-wsgi python-flask python-requests unzip python-pip \
     && pip install bioblend \
-    && pip install fpdf
+    && pip install fpdf \
     && apt-get clean
 
 #DOWNLOAD AND INSTALL THE APP CODE
