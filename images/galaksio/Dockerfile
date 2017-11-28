@@ -12,7 +12,9 @@ MAINTAINER Rafael Hernandez <https://github.com/fikipollo>
 ################## BEGIN INSTALLATION ######################
 #INSTALL THE DEPENDENCIES
 RUN apt-get update  \
-    && apt-get install -y wget libapache2-mod-wsgi python-flask python-requests unzip \
+    && apt-get install -y wget libapache2-mod-wsgi python-flask python-requests unzip python-pip \
+    && pip install bioblend \
+    && pip install fpdf
     && apt-get clean
 
 #DOWNLOAD AND INSTALL THE APP CODE
@@ -30,12 +32,10 @@ COPY configs/httpd.conf /usr/local/apache2/conf/httpd.conf
 COPY configs/galaksio.wsgi /usr/local/apache2/htdocs/galaksio.wsgi
 
 RUN chmod +x /usr/bin/entrypoint.sh \
-    && chown -R www-data:www-data /usr/local/apache2/htdocs/
+RUN chown -R www-data:www-data /usr/local/apache2/htdocs/
 
 ##################### INSTALLATION END #####################
 
 VOLUME ["/usr/local/apache2/htdocs/server/conf/"]
-
-EXPOSE 80
 
 ENTRYPOINT ["/usr/bin/entrypoint.sh"]
