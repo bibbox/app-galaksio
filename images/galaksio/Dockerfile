@@ -18,7 +18,7 @@ RUN apt-get update  \
     && apt-get clean
 
 #DOWNLOAD AND INSTALL THE APP CODE
-RUN wget -O /tmp/galaksio.zip https://github.com/fikipollo/galaksio.git \
+RUN wget -O /tmp/galaksio.zip https://github.com/fikipollo/galaksio/archive/master.zip \
     && unzip /tmp/galaksio.zip -d /tmp/galaksio \
     && mv /tmp/galaksio/*/* /usr/local/apache2/htdocs/ \
     && rm -r /tmp/galaksio/ \
