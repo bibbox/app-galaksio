@@ -31,8 +31,8 @@ COPY configs/entrypoint.sh /usr/bin/entrypoint.sh
 COPY configs/httpd.conf /usr/local/apache2/conf/httpd.conf
 COPY configs/galaksio.wsgi /usr/local/apache2/htdocs/galaksio.wsgi
 
-RUN chmod +x /usr/bin/entrypoint.sh 
-RUN chown -R www-data:www-data /usr/local/apache2/htdocs/
+RUN chmod +x /usr/bin/entrypoint.sh \
+&& chown -R www-data:www-data /usr/local/apache2/htdocs/
 
 ##################### INSTALLATION END #####################
 
