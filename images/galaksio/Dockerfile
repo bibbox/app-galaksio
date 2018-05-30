@@ -13,9 +13,9 @@ MAINTAINER Rafael Hernandez <https://github.com/fikipollo>
 #INSTALL THE DEPENDENCIES
 RUN apt-get update  \
     && apt-get install -y wget libapache2-mod-wsgi python-flask python-requests unzip python-pip \
+    && apt-get clean \
     && pip install bioblend \
-    && pip install fpdf \
-    && apt-get clean
+    && pip install fpdf
 
 #DOWNLOAD AND INSTALL THE APP CODE
 RUN wget -O /tmp/galaksio.zip https://github.com/fikipollo/galaksio/archive/master.zip \
