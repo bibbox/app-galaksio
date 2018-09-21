@@ -7,18 +7,20 @@
 FROM httpd
 
 # File Author / Maintainer
-MAINTAINER Rafael Hernandez <https://github.com/fikipollo>
+MAINTAINER Tomas Klingström <https://github.com/tklingstrom>
+
 
 ################## BEGIN INSTALLATION ######################
 #INSTALL THE DEPENDENCIES
 RUN apt-get update  \
-    && apt-get install -y wget libapache2-mod-wsgi python-flask python-requests unzip python-pip \
+    && apt-get install --no-install-recommends -y wget libapache2-mod-wsgi python-flask python-requests unzip python-pip \
     && apt-get clean \
-    && pip install bioblend==0.10.0 \
+    && pip install bioblend \
     && pip install fpdf
 
 #DOWNLOAD AND INSTALL THE APP CODE
-RUN wget -O /tmp/galaksio.zip https://github.com/fikipollo/galaksio/archive/master.zip \
+RUN wget -O /tmp/galaksio.zip https://github.com/sgbc/galaksio/archive/master.zip \
+#RUN wget -O /tmp/galaksio.zip https://github.com/OskarSLU/galaksio/archive/v0.3.zip \
     && unzip /tmp/galaksio.zip -d /tmp/galaksio \
     && mv /tmp/galaksio/*/* /usr/local/apache2/htdocs/ \
     && rm -r /tmp/galaksio/ \
@@ -32,10 +34,12 @@ COPY configs/httpd.conf /usr/local/apache2/conf/httpd.conf
 COPY configs/galaksio.wsgi /usr/local/apache2/htdocs/galaksio.wsgi
 
 RUN chmod +x /usr/bin/entrypoint.sh \
-&& chown -R www-data:www-data /usr/local/apache2/htdocs/
+    && chown -R www-data:www-data /usr/local/apache2/htdocs/
 
 ##################### INSTALLATION END #####################
 
 VOLUME ["/usr/local/apache2/htdocs/server/conf/"]
+
+EXPOSE 80
 
 ENTRYPOINT ["/usr/bin/entrypoint.sh"]

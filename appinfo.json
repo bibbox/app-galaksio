@@ -1,10 +1,10 @@
 {
-		"name": "Galaksio 0.2.3",
+		"name": "Galaksio 0.36",
 		"short_name": "Galaksio",
-		"version": "v0.2.3",
+		"version": "v0.36",
 		"description": "Galaksio - an easy to use GUI for running Galaxy workflows.",
         "short_description": "GUI for running Galaxy workflows",
 		"catalogue_url": "",
-		"application_url": "https://github.com/fikipollo/galaksio",
+		"application_url": "https://github.com/sgbc/galaksio",
 		"tags": ["Bioinformatics"]
 }
